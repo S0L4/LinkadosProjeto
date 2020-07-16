@@ -1,0 +1,535 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>4.4</version>
+    <date>2020-07-16T21:34:20Z</date>
+    <groups>
+        <group>
+            <name>Linux servers</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <template>Robot</template>
+            <name>Monitoramento do robo</name>
+            <groups>
+                <group>
+                    <name>Linux servers</name>
+                </group>
+            </groups>
+            <applications>
+                <application>
+                    <name>Robot Raw Itens</name>
+                </application>
+                <application>
+                    <name>Step 1</name>
+                </application>
+                <application>
+                    <name>Step 2</name>
+                </application>
+                <application>
+                    <name>Step 3</name>
+                </application>
+                <application>
+                    <name>Step 4</name>
+                </application>
+                <application>
+                    <name>Step 5</name>
+                </application>
+                <application>
+                    <name>Step 6</name>
+                </application>
+                <application>
+                    <name>Step 7</name>
+                </application>
+                <application>
+                    <name>Step 8</name>
+                </application>
+            </applications>
+            <items>
+                <item>
+                    <name>Fail</name>
+                    <type>DEPENDENT</type>
+                    <key>fail.output.xml</key>
+                    <delay>0</delay>
+                    <applications>
+                        <application>
+                            <name>Robot Raw Itens</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>XMLPATH</type>
+                            <params>count(//status[@status='FAIL'])</params>
+                        </step>
+                    </preprocessing>
+                    <master_item>
+                        <key>robot.output.xml</key>
+                    </master_item>
+                </item>
+                <item>
+                    <name>Pass</name>
+                    <type>DEPENDENT</type>
+                    <key>pass.output.xml</key>
+                    <delay>0</delay>
+                    <applications>
+                        <application>
+                            <name>Robot Raw Itens</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>XMLPATH</type>
+                            <params>count(//status[@status='PASS'])</params>
+                        </step>
+                    </preprocessing>
+                    <master_item>
+                        <key>robot.output.xml</key>
+                    </master_item>
+                </item>
+                <item>
+                    <name>robot</name>
+                    <type>TRAP</type>
+                    <key>robot.output.xml</key>
+                    <delay>0</delay>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>Robot Raw Itens</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Teste de login(fails)</name>
+                    <type>DEPENDENT</type>
+                    <key>step1f.output.xml</key>
+                    <delay>0</delay>
+                    <applications>
+                        <application>
+                            <name>Robot Raw Itens</name>
+                        </application>
+                        <application>
+                            <name>Step 1</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>XMLPATH</type>
+                            <params>(/robot/suite/test[@name=&quot;Teste de login&quot;])</params>
+                        </step>
+                        <step>
+                            <type>XMLPATH</type>
+                            <params>count(//status[@status=&quot;FAIL&quot;])</params>
+                        </step>
+                    </preprocessing>
+                    <master_item>
+                        <key>robot.output.xml</key>
+                    </master_item>
+                </item>
+                <item>
+                    <name>Teste de login(Pass)</name>
+                    <type>DEPENDENT</type>
+                    <key>step1p.output.xml</key>
+                    <delay>0</delay>
+                    <applications>
+                        <application>
+                            <name>Step 1</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>XMLPATH</type>
+                            <params>(/robot/suite/test[@name=&quot;Teste de login&quot;])</params>
+                        </step>
+                        <step>
+                            <type>XMLPATH</type>
+                            <params>count(//status[@status=&quot;PASS&quot;])</params>
+                        </step>
+                    </preprocessing>
+                    <master_item>
+                        <key>robot.output.xml</key>
+                    </master_item>
+                </item>
+                <item>
+                    <name>Validação da home(Fails)</name>
+                    <type>DEPENDENT</type>
+                    <key>step2f.output.xml</key>
+                    <delay>0</delay>
+                    <applications>
+                        <application>
+                            <name>Robot Raw Itens</name>
+                        </application>
+                        <application>
+                            <name>Step 2</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>XMLPATH</type>
+                            <params>(/robot/suite/test[@name=&quot;Validar se a home page e exibida corretamente (pagina inicial - responsivo/web)&quot;])</params>
+                        </step>
+                        <step>
+                            <type>XMLPATH</type>
+                            <params>count(//status[@status=&quot;FAIL&quot;])</params>
+                        </step>
+                    </preprocessing>
+                    <master_item>
+                        <key>robot.output.xml</key>
+                    </master_item>
+                </item>
+                <item>
+                    <name>Validação da home(Pass)</name>
+                    <type>DEPENDENT</type>
+                    <key>step2p.output.xml</key>
+                    <delay>0</delay>
+                    <applications>
+                        <application>
+                            <name>Step 2</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>XMLPATH</type>
+                            <params>(/robot/suite/test[@name=&quot;Validar se a home page e exibida corretamente (pagina inicial - responsivo/web)&quot;])</params>
+                        </step>
+                        <step>
+                            <type>XMLPATH</type>
+                            <params>count(//status[@status=&quot;PASS&quot;])</params>
+                        </step>
+                    </preprocessing>
+                    <master_item>
+                        <key>robot.output.xml</key>
+                    </master_item>
+                </item>
+                <item>
+                    <name>Validar pesquisa(Fails)</name>
+                    <type>DEPENDENT</type>
+                    <key>step3f.output.xml</key>
+                    <delay>0</delay>
+                    <applications>
+                        <application>
+                            <name>Robot Raw Itens</name>
+                        </application>
+                        <application>
+                            <name>Step 3</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>XMLPATH</type>
+                            <params>(/robot/suite/test[@name=&quot;Validar se e possivel pesquisar por paginas espacos&quot;])</params>
+                        </step>
+                        <step>
+                            <type>XMLPATH</type>
+                            <params>count(//status[@status=&quot;FAIL&quot;])</params>
+                        </step>
+                    </preprocessing>
+                    <master_item>
+                        <key>robot.output.xml</key>
+                    </master_item>
+                </item>
+                <item>
+                    <name>Validar pesquisa(Pass)</name>
+                    <type>DEPENDENT</type>
+                    <key>step3p.output.xml</key>
+                    <delay>0</delay>
+                    <applications>
+                        <application>
+                            <name>Step 3</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>XMLPATH</type>
+                            <params>(/robot/suite/test[@name=&quot;Validar se e possivel pesquisar por paginas espacos&quot;])</params>
+                        </step>
+                        <step>
+                            <type>XMLPATH</type>
+                            <params>count(//status[@status=&quot;PASS&quot;])</params>
+                        </step>
+                    </preprocessing>
+                    <master_item>
+                        <key>robot.output.xml</key>
+                    </master_item>
+                </item>
+                <item>
+                    <name>Acesso a ferramenta(Fails)</name>
+                    <type>DEPENDENT</type>
+                    <key>step4f.output.xml</key>
+                    <delay>0</delay>
+                    <applications>
+                        <application>
+                            <name>Step 4</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>XMLPATH</type>
+                            <params>(/robot/suite/test[@name=&quot;Validar se a ferramenta esta acessivel (home page- status 200)&quot;])</params>
+                        </step>
+                        <step>
+                            <type>XMLPATH</type>
+                            <params>count(//status[@status=&quot;FAIL&quot;])</params>
+                        </step>
+                    </preprocessing>
+                    <master_item>
+                        <key>robot.output.xml</key>
+                    </master_item>
+                </item>
+                <item>
+                    <name>Acesso a ferramenta(Pass)</name>
+                    <type>DEPENDENT</type>
+                    <key>step4p.output.xml</key>
+                    <delay>0</delay>
+                    <applications>
+                        <application>
+                            <name>Step 4</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>XMLPATH</type>
+                            <params>(/robot/suite/test[@name=&quot;Validar se a ferramenta esta acessivel (home page- status 200)&quot;])</params>
+                        </step>
+                        <step>
+                            <type>XMLPATH</type>
+                            <params>count(//status[@status=&quot;PASS&quot;])</params>
+                        </step>
+                    </preprocessing>
+                    <master_item>
+                        <key>robot.output.xml</key>
+                    </master_item>
+                </item>
+                <item>
+                    <name>Validar criação de páginas(Fails)</name>
+                    <type>DEPENDENT</type>
+                    <key>step5f.output.xml</key>
+                    <delay>0</delay>
+                    <applications>
+                        <application>
+                            <name>Robot Raw Itens</name>
+                        </application>
+                        <application>
+                            <name>Step 5</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>XMLPATH</type>
+                            <params>(/robot/suite/test[@name=&quot;Validar se e possivel cirar paginas (Workspace TESTE)&quot;])</params>
+                        </step>
+                        <step>
+                            <type>XMLPATH</type>
+                            <params>count(//status[@status=&quot;FAIL&quot;])</params>
+                        </step>
+                    </preprocessing>
+                    <master_item>
+                        <key>robot.output.xml</key>
+                    </master_item>
+                </item>
+                <item>
+                    <name>Validar criação de páginas(Pass)</name>
+                    <type>DEPENDENT</type>
+                    <key>step5p.output.xml</key>
+                    <delay>0</delay>
+                    <applications>
+                        <application>
+                            <name>Step 5</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>XMLPATH</type>
+                            <params>(/robot/suite/test[@name=&quot;Validar se e possivel pesquisar por paginas espacos&quot;])</params>
+                        </step>
+                        <step>
+                            <type>XMLPATH</type>
+                            <params>count(//status[@status=&quot;PASS&quot;])</params>
+                        </step>
+                    </preprocessing>
+                    <master_item>
+                        <key>robot.output.xml</key>
+                    </master_item>
+                </item>
+                <item>
+                    <name>Validação dos menus(Fails)</name>
+                    <type>DEPENDENT</type>
+                    <key>step6f.output.xml</key>
+                    <delay>0</delay>
+                    <applications>
+                        <application>
+                            <name>Robot Raw Itens</name>
+                        </application>
+                        <application>
+                            <name>Step 6</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>XMLPATH</type>
+                            <params>(/robot/suite/test[@name=&quot;Validar se os menus da home page estao funcionais (EX: RH online)&quot;])</params>
+                        </step>
+                        <step>
+                            <type>XMLPATH</type>
+                            <params>count(//status[@status=&quot;FAIL&quot;])</params>
+                        </step>
+                    </preprocessing>
+                    <master_item>
+                        <key>robot.output.xml</key>
+                    </master_item>
+                </item>
+                <item>
+                    <name>Validação dos menus(Pass)</name>
+                    <type>DEPENDENT</type>
+                    <key>step6p.output.xml</key>
+                    <delay>0</delay>
+                    <applications>
+                        <application>
+                            <name>Step 6</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>XMLPATH</type>
+                            <params>(/robot/suite/test[@name=&quot;Validar se os menus da home page estao funcionais (EX: RH online)&quot;])</params>
+                        </step>
+                        <step>
+                            <type>XMLPATH</type>
+                            <params>count(//status[@status=&quot;PASS&quot;])</params>
+                        </step>
+                    </preprocessing>
+                    <master_item>
+                        <key>robot.output.xml</key>
+                    </master_item>
+                </item>
+                <item>
+                    <name>Validação para anexar arquivos(Fail)</name>
+                    <type>DEPENDENT</type>
+                    <key>step7f.output.xml</key>
+                    <delay>0</delay>
+                    <applications>
+                        <application>
+                            <name>Step 7</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>XMLPATH</type>
+                            <params>(/robot/suite/test[@name=&quot;Validar se e possivel anexar arquivos nas paginas&quot;])</params>
+                        </step>
+                        <step>
+                            <type>XMLPATH</type>
+                            <params>count(//status[@status=&quot;FAIL&quot;])</params>
+                        </step>
+                    </preprocessing>
+                    <master_item>
+                        <key>robot.output.xml</key>
+                    </master_item>
+                </item>
+                <item>
+                    <name>Validação para anexar arquivos(pass)</name>
+                    <type>DEPENDENT</type>
+                    <key>step7p.output.xml</key>
+                    <delay>0</delay>
+                    <applications>
+                        <application>
+                            <name>Step 7</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>XMLPATH</type>
+                            <params>(/robot/suite/test[@name=&quot;Validar se e possivel anexar arquivos nas paginas&quot;])</params>
+                        </step>
+                        <step>
+                            <type>XMLPATH</type>
+                            <params>count(//status[@status=&quot;PASS&quot;])</params>
+                        </step>
+                    </preprocessing>
+                    <master_item>
+                        <key>robot.output.xml</key>
+                    </master_item>
+                </item>
+                <item>
+                    <name>Validar a exclusão do anexo(Fail)</name>
+                    <type>DEPENDENT</type>
+                    <key>step8f.output.xml</key>
+                    <delay>0</delay>
+                    <applications>
+                        <application>
+                            <name>Step 8</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>XMLPATH</type>
+                            <params>(/robot/suite/test[@name=&quot;Validar se e possivel excluir o arquivo na pagina&quot;])</params>
+                        </step>
+                        <step>
+                            <type>XMLPATH</type>
+                            <params>count(//status[@status=&quot;FAIL&quot;])</params>
+                        </step>
+                    </preprocessing>
+                    <master_item>
+                        <key>robot.output.xml</key>
+                    </master_item>
+                </item>
+                <item>
+                    <name>Validar a exclusão do anexo (Pass)</name>
+                    <type>DEPENDENT</type>
+                    <key>step8p.output.xml</key>
+                    <delay>0</delay>
+                    <applications>
+                        <application>
+                            <name>Step 8</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>XMLPATH</type>
+                            <params>(/robot/suite/test[@name=&quot;Validar se e possivel excluir o arquivo na pagina&quot;])</params>
+                        </step>
+                        <step>
+                            <type>XMLPATH</type>
+                            <params>count(//status[@status=&quot;PASS&quot;])</params>
+                        </step>
+                    </preprocessing>
+                    <master_item>
+                        <key>robot.output.xml</key>
+                    </master_item>
+                </item>
+                <item>
+                    <name>Automatização do sender</name>
+                    <key>system.run[/usr/bin/zabbix_sender -z 10.128.0.10 -s Robo -k robot.output.xml -o &quot;$(cat /arquivosroboteste/output.teste)&quot;]</key>
+                    <trends>0</trends>
+                    <value_type>TEXT</value_type>
+                    <applications>
+                        <application>
+                            <name>Robot Raw Itens</name>
+                        </application>
+                    </applications>
+                </item>
+                <item>
+                    <name>Total de steps</name>
+                    <type>DEPENDENT</type>
+                    <key>total.output.xml</key>
+                    <delay>0</delay>
+                    <applications>
+                        <application>
+                            <name>Robot Raw Itens</name>
+                        </application>
+                    </applications>
+                    <preprocessing>
+                        <step>
+                            <type>XMLPATH</type>
+                            <params>count(//status)</params>
+                        </step>
+                    </preprocessing>
+                    <master_item>
+                        <key>robot.output.xml</key>
+                    </master_item>
+                </item>
+            </items>
+        </template>
+    </templates>
+</zabbix_export>
