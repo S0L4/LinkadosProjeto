@@ -1,0 +1,15 @@
+Procedimentos para Resetar:
+
+DESATIVE O ANTI VIRUS Descompacte e execute o arquivo "AdjProg"
+
+Siga a instruções:
+
+1. Clique em "Select" para selecionar o modelo caso o mesmo ainda não esteja selecionado.
+2. Clique em "Particular adjustment mode"
+3. Em "---- MAINTENANCE ----" clique 2X em "Waste Ink Pad Counter"
+4. Selecione "Main Pad Counter" e "Platen pad counter".
+5. E clique no botão "Check"
+6. Selecione novamente "Main Pad Counter" e "Platen pad counter".
+7. Clique em "Initialization"
+8. Desligue e ligue novamente a impressora.
+9. Pronto!
